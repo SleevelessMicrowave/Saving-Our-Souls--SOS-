@@ -25,7 +25,7 @@ public class Situation : MonoBehaviour
 
     void Start()
     {
-        Invoke(nameof(Scenario1), 2);
+        Invoke(nameof(Scenario1), 9);
     }
 
     public void Scenario1()
