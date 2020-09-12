@@ -17,21 +17,44 @@ public class GM : MonoBehaviour
     public bool option1;
     public bool option2;
 
+    public bool start;
+    public bool check1;
+    public bool check2;
+
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject.Find("FirstPersonPlayer").GetComponent<PlayerMovement>().enabled = false;
         GameObject.Find("Main Camera").GetComponent<MouseLook>().enabled = false;
         can.gameObject.SetActive(false);
+        check1 = false;
+        start = true;
+        anim = GetComponent<Animator>();
+        
+
         //GameObject.Find("Game Master").GetComponent<Animation>().Play("Wake Up Animation");
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(S1());
-
-
+        if (start == true)
+        {
+            StartCoroutine(S1());
+        }
+        
+        if (check1 == true)
+        {
+            Debug.Log("Am i here?");
+            anim.SetBool("isLooking", true);
+            Debug.Log("here?");
+            StartCoroutine(S2());
+        }
+        
+        
+        
     }
 
     public IEnumerator S1()
@@ -47,33 +70,38 @@ public class GM : MonoBehaviour
         {
 
             can.gameObject.SetActive(false);
-            GameObject.Find("FirstPersonPlayer").GetComponent<Animator>().Play("Look for wallet");
-            Debug.Log("hi");
-            can.gameObject.SetActive(true);
-            Debug.Log("hi");
-            S2();
+            check1 = true;
+            start = false;
+            
+
         }
         else if (option2 == true)
         {
             can.gameObject.SetActive(false);
+            start = false;
         }
 
 
 
     }
 
-    void S2()
+    public IEnumerator S2()
     {
-        //yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(6f);
+        check1 = false;
+        Debug.Log("do i make it here");
 
         can.gameObject.SetActive(true);
+
+        Debug.Log("whatbouthere");
+
         Question2();
 
         if (option1 == true)
         {
 
             can.gameObject.SetActive(false);
-            GameObject.Find("FirstPersonPlayer").GetComponent<Animator>().Play("Go to Bedroom Door");
+            //GameObject.Find("FirstPersonPlayer").GetComponent<Animator>().Play("Go to Bedroom Door");
             //StartCoroutine(S2());
         }
         else if (option2 == true)
@@ -95,6 +123,8 @@ public class GM : MonoBehaviour
 
     void Question2()
     {
+        ChangeColor1();
+        ChangeColor2();
         text.text = "Go to bedroom door or go to window?";
         text1.text = "Go to bedroom door";
         text2.text = "Go to window";
