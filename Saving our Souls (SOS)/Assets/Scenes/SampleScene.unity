@@ -9312,6 +9312,7 @@ MonoBehaviour:
   start: 0
   check1: 0
   check2: 0
+  walletButton: {fileID: 1694545608}
 --- !u!1 &1694545608
 GameObject:
   m_ObjectHideFlags: 0

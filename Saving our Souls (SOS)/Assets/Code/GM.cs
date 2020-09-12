@@ -23,6 +23,8 @@ public class GM : MonoBehaviour
 
     private Animator anim;
 
+    public GameObject walletButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,14 +34,7 @@ public class GM : MonoBehaviour
         check1 = false;
         start = true;
         anim = GetComponent<Animator>();
-        
 
-        //GameObject.Find("Game Master").GetComponent<Animation>().Play("Wake Up Animation");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         if (start == true)
         {
             StartCoroutine(S1());
@@ -52,6 +47,26 @@ public class GM : MonoBehaviour
             Debug.Log("here?");
             StartCoroutine(S2());
         }
+
+
+        //GameObject.Find("Game Master").GetComponent<Animation>().Play("Wake Up Animation");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        /*if (start == true)
+        {
+            StartCoroutine(S1());
+        }
+        
+        if (check1 == true)
+        {
+            Debug.Log("Am i here?");
+            anim.SetBool("isLooking", true);
+            Debug.Log("here?");
+            StartCoroutine(S2());
+        }*/
         
         
         
@@ -68,11 +83,12 @@ public class GM : MonoBehaviour
 
         if (option1 == true)
         {
-
+            Debug.Log("here");
+            
             can.gameObject.SetActive(false);
             check1 = true;
             start = false;
-            
+               
 
         }
         else if (option2 == true)
@@ -155,6 +171,13 @@ public class GM : MonoBehaviour
         {
             option2 = true;
         });
+    }
+
+    public void LookForWallet()
+    {
+        walletButton.SetActive(true);
+
+        Debug.Log("works");
     }
 
 
