@@ -9,6 +9,7 @@ public class GM : MonoBehaviour
     {
         //GameObject.Find("FirstPersonPlayer").GetComponent<PlayerMovement>().enabled = false;
         //GameObject.Find("Main Camera").GetComponent<MouseLook>().enabled = false;
+
     }
 
     // Update is called once per frame
