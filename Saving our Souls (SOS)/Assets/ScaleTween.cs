@@ -7,7 +7,7 @@ public class ScaleTween : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LeanTween.scale()
+        //LeanTween.scale()
     }
 
     // Update is called once per frame
