@@ -10,7 +10,7 @@ public class textManager : MonoBehaviour
    
         public TMP_Text text;
         public Button firstOp;
-         public Button secondOp;
+        public Button secondOp;
 
 
         public bool option1;
@@ -29,6 +29,8 @@ public class textManager : MonoBehaviour
         void Start()
         {
         myState = States.question;
+        firstOp.gameObject.SetActive(false);
+        secondOp.gameObject.SetActive(false);
         }
 
         void Update()
@@ -45,6 +47,8 @@ public class textManager : MonoBehaviour
         {
             FalseState();
         }
+
+        
         }
 
         void OnEnable()
@@ -63,6 +67,8 @@ public class textManager : MonoBehaviour
         void Question()
         {
         text.text = "Look for wallet or Don’t look for wallet?";
+        firstOp.gameObject.SetActive(true);
+        secondOp.gameObject.SetActive(true);
 
         if (option1 == true)
         {
@@ -78,20 +84,28 @@ public class textManager : MonoBehaviour
         void TrueState()
         {
         text.text = "30 Time Reduction";
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        isTrue = true;
-        }
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //isTrue = true;
+        DestroyMe();
+    }
 
         void FalseState()
         {
         text.text = "";
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        isTrue = false;
-        }
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //isTrue = false;
+        DestroyMe();
+    }
 
         public static bool Value
         {
         get { return isTrue; }
+        }
+        
+        void DestroyMe()
+        {
+        Destroy(gameObject);
+        
         }
 
  
