@@ -26,8 +26,10 @@ public class GM : MonoBehaviour
     public Animator anim;
 
     public GameObject button1;
+    public GameObject button2;
 
     private static int animationCounter = 0;
+    private static float pathCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -68,20 +70,35 @@ public class GM : MonoBehaviour
         if (start == true)
         {
             start = false;
-            
+            Debug.Log(start);
+            pathCounter += .25f;
             StartCoroutine(S1());
             Debug.Log("Dont repeat");
         }
 
-        //Debug.Log(done);
+        //Debug.Log(pathCounter);
 
-        if (done == true)
+        if (pathCounter == 1)
         {
-            done = false;
+            pathCounter+=.5f;
             animationCounter++;
             Debug.Log("What");
             StartCoroutine(S2());
             Debug.Log("number 2");
+        }
+
+        if (pathCounter == 2)
+        {
+            pathCounter+=.5f;
+            animationCounter++;
+            StartCoroutine(S3());
+        }
+
+        if (pathCounter == 3)
+        {
+            pathCounter += .5f;
+            animationCounter++;
+            StartCoroutine(S4());
         }
 
         /*if (check1 == true)
@@ -154,6 +171,22 @@ public class GM : MonoBehaviour
 
     }
 
+    public IEnumerator S3()
+    {
+        yield return new WaitForSeconds(6);
+        Debug.Log("s3");
+        can.gameObject.SetActive(true);
+        Question3();
+    }
+
+    public IEnumerator S4()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("s4");
+        can.gameObject.SetActive(true);
+        Question4();
+    }
+
     void Question1()
     {
         ChangeColor1();
@@ -170,7 +203,25 @@ public class GM : MonoBehaviour
         ChangeColor2();
         text.text = "Go to bedroom door or go to window?";
         text1.text = "Go to bedroom door";
-        text2.text = "Go to window";
+        text2.text = "Jump out the window";
+    }
+
+    void Question3()
+    {
+        ChangeColor1();
+        ChangeColor2();
+        text.text = "Open the door or touch the door with back of hand?";
+        text1.text = "Open the door";
+        text2.text = "Touch the door with back of hand";
+    }
+
+    void Question4()
+    {
+        ChangeColor1();
+        ChangeColor2();
+        text.text = "You're on fire!";
+        text1.text = "Stop, drop, and roll!";
+        text2.text = "Keep going";
     }
 
 
@@ -186,6 +237,8 @@ public class GM : MonoBehaviour
         colors.normalColor = new Color32(231, 0, 0, 255);
         secondOp.colors = colors;
     }
+
+
 
    /* void OnEnable()
     {
@@ -203,8 +256,9 @@ public class GM : MonoBehaviour
     public void ButtonOne()
     {
         button1.SetActive(true);
-        Debug.Log(animationCounter);
+        Debug.Log("Animation counter: "  + animationCounter);
         done = true;
+        pathCounter += .5f;
         if (animationCounter == 0)
         {
             anim.SetBool("isLooking", true);
@@ -214,9 +268,43 @@ public class GM : MonoBehaviour
         {
             anim.SetBool("leftButt", true);
         }
+        else if (animationCounter ==2)
+        {
+            anim.SetBool("slapDoor", true);
+        }
+        else if (animationCounter == 3)
+        {
+            anim.SetBool("roll", true);
+        }
         start = false;
         can.gameObject.SetActive(false);
         Debug.Log("button press");
+    }
+
+    public void ButtonTwo()
+    {
+        button2.SetActive(true);
+        Debug.Log("button2");
+        Debug.Log("Animation counter: " + animationCounter);
+        pathCounter += .5f;
+        if (animationCounter == 0)
+        {
+            animationCounter++;
+
+            can.gameObject.SetActive(true);
+
+            Question2();
+        }
+        else if (animationCounter == 1)
+        {
+            animationCounter++;
+            anim.SetBool("rightButt", true);
+        }
+        else if (animationCounter ==2)
+        {
+            animationCounter++;
+            anim.SetBool("backHandDoor", true);
+        }
     }
 
 
