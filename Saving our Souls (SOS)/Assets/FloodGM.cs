@@ -222,7 +222,7 @@ public class FloodGM : MonoBehaviour
         yield return new WaitForSeconds(4);
         Debug.Log("s5");
         can.gameObject.SetActive(true);
-        Question5();
+        //Question5();
     }
 
     public IEnumerator S6()
@@ -245,7 +245,7 @@ public class FloodGM : MonoBehaviour
         ChangeColor1();
         ChangeColor2();
         text.text = "Turn on the headlights!";
-        text1.text = "urn on the headlight";
+        text1.text = "Conserve battery";
         text2.text = "Turn on the headlight";
 
     }
@@ -255,7 +255,7 @@ public class FloodGM : MonoBehaviour
         ChangeColor1();
         ChangeColor2();
         text.text = "Open the car door!";
-        text1.text = "Open the car door";
+        text1.text = "Smash window";
         text2.text = "Open the car door";
     }
 
@@ -264,8 +264,8 @@ public class FloodGM : MonoBehaviour
         ChangeColor1();
         ChangeColor2();
         text.text = "Keep trying to open door or smash window";
-        text1.text = "keep trying";
-        text2.text = "Smash window";
+        text1.text = "Keep trying to open car door";
+        text2.text = "Wait until water reaches neck level";
     }
 
     void Question4()
@@ -273,18 +273,18 @@ public class FloodGM : MonoBehaviour
         ChangeColor1();
         ChangeColor2();
         text.text = "Get out of the car";
-        text1.text = "Get out of the car";
-        text2.text = "Get out of the car";
+        text1.text = "Stay by car";
+        text2.text = "Get to high ground";
     }
 
-    void Question5()
+    /*void Question5()
     {
         ChangeColor1();
         ChangeColor2();
         text.text = "Get to high ground!";
         text1.text = "Get to high ground";
         text2.text = "Get to high ground";
-    }
+    }*/
 
     /*void Question6()
     {
@@ -299,13 +299,13 @@ public class FloodGM : MonoBehaviour
     void ChangeColor1()
     {
         ColorBlock colors = firstOp.colors;
-        colors.normalColor = new Color32(231, 0, 0, 255);
+        colors.normalColor = new Color32(0, 132, 248, 255);
         firstOp.colors = colors;
     }
     void ChangeColor2()
     {
         ColorBlock colors = secondOp.colors;
-        colors.normalColor = new Color32(231, 0, 0, 255);
+        colors.normalColor = new Color32(0, 132, 248, 255);
         secondOp.colors = colors;
     }
 
@@ -332,20 +332,20 @@ public class FloodGM : MonoBehaviour
         pathCounter += .5f;
         if (animationCounter == 0)
         {
-            anim.SetBool("light", true);
+            anim.SetBool("light", false);
 
         }
         else if (animationCounter == 1)
         {
-            anim.SetBool("openDoor", true);
+            anim.SetBool("smash", true);
         }
         else if (animationCounter == 2)
         {
-            anim.SetBool("neckWater", true);
+            anim.SetBool("neckWater", false);
         }
         else if (animationCounter == 3)
         {
-            anim.SetBool("outtaCar", true);
+            anim.SetBool("outtaCar", false);
         }
         else if (animationCounter == 4)
         {
@@ -380,13 +380,13 @@ public class FloodGM : MonoBehaviour
         }
         else if (animationCounter == 2)
         {
-            anim.SetBool("smash", true);
+            anim.SetBool("neckWater", true);
 
         }
         else if (animationCounter == 3)
         {
 
-            anim.SetBool("outtaCar", true);
+            anim.SetBool("hiGround", true);
         }
         else if (animationCounter == 4)
         {
