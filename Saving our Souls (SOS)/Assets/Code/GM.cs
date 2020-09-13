@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -28,8 +29,12 @@ public class GM : MonoBehaviour
     public GameObject button1;
     public GameObject button2;
 
+    
+
     private static int animationCounter = 0;
     private static float pathCounter = 0;
+
+    public static float time = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +72,8 @@ public class GM : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        time += Time.deltaTime;
+
         if (start == true)
         {
             start = false;
@@ -89,6 +96,7 @@ public class GM : MonoBehaviour
 
         if (pathCounter == 2)
         {
+            
             pathCounter+=.5f;
             animationCounter++;
             StartCoroutine(S3());
@@ -101,6 +109,27 @@ public class GM : MonoBehaviour
             StartCoroutine(S4());
         }
 
+        if (pathCounter == 4)
+        {
+            pathCounter += .5f;
+            animationCounter++;
+            StartCoroutine(S5());
+        }
+
+        if (pathCounter == 5)
+        {
+            pathCounter += .5f;
+            animationCounter++;
+            StartCoroutine(S6());
+        }
+
+        if (pathCounter == 6)
+        {
+            pathCounter += .5f;
+            animationCounter++;
+            StartCoroutine(S7());
+        }
+
         /*if (check1 == true)
         {
             Debug.Log("Am i here?");
@@ -109,8 +138,8 @@ public class GM : MonoBehaviour
             StartCoroutine(S2());
         }*/
 
-        
-        
+
+
     }
 
     public IEnumerator S1()
@@ -175,6 +204,7 @@ public class GM : MonoBehaviour
     {
         yield return new WaitForSeconds(6);
         Debug.Log("s3");
+        //SceneManager.LoadScene("EndScreen");
         can.gameObject.SetActive(true);
         Question3();
     }
@@ -185,6 +215,29 @@ public class GM : MonoBehaviour
         Debug.Log("s4");
         can.gameObject.SetActive(true);
         Question4();
+    }
+
+    public IEnumerator S5()
+    {
+        yield return new WaitForSeconds(4);
+        Debug.Log("s5");
+        can.gameObject.SetActive(true);
+        Question5();
+    }
+
+    public IEnumerator S6()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("s6");
+        can.gameObject.SetActive(true);
+        Question6();
+    }
+
+    public IEnumerator S7()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("s7");
+        SceneManager.LoadScene("EndScreen");
     }
 
     void Question1()
@@ -222,6 +275,24 @@ public class GM : MonoBehaviour
         text.text = "You're on fire!";
         text1.text = "Stop, drop, and roll!";
         text2.text = "Keep going";
+    }
+
+    void Question5()
+    {
+        ChangeColor1();
+        ChangeColor2();
+        text.text = "Go out the closer front door that's on fire or the back door?";
+        text1.text = "Front door";
+        text2.text = "Back door";
+    }
+
+    void Question6()
+    {
+        ChangeColor1();
+        ChangeColor2();
+        text.text = "You forgot your cat!";
+        text1.text = "Get the cat!";
+        text2.text = "Wait for the fire department.";
     }
 
 
@@ -276,6 +347,15 @@ public class GM : MonoBehaviour
         {
             anim.SetBool("roll", true);
         }
+        else if (animationCounter == 4)
+        {
+            anim.SetBool("frontDoor", true);
+            //SceneManager.LoadScene("Congratulations");
+        }
+        else if (animationCounter == 5)
+        {
+            anim.SetBool("forgotCat", true);
+        }
         start = false;
         can.gameObject.SetActive(false);
         Debug.Log("button press");
@@ -289,7 +369,7 @@ public class GM : MonoBehaviour
         pathCounter += .5f;
         if (animationCounter == 0)
         {
-            animationCounter++;
+            
 
             can.gameObject.SetActive(true);
 
@@ -297,14 +377,20 @@ public class GM : MonoBehaviour
         }
         else if (animationCounter == 1)
         {
-            animationCounter++;
+            
             anim.SetBool("rightButt", true);
         }
         else if (animationCounter ==2)
         {
-            animationCounter++;
+            
             anim.SetBool("backHandDoor", true);
         }
+        else if (animationCounter == 3)
+        {
+            
+            anim.SetBool("backDoor", true);
+        }
+        can.gameObject.SetActive(false);
     }
 
 
