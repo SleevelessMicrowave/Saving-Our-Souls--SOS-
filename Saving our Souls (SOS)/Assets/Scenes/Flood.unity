@@ -312,7 +312,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 289082441}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19b1276e2117cbd42a150759a3b0e8f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 050054b43b0bb084eaf3d75ed16d9eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2130854852}
@@ -324,10 +324,9 @@ MonoBehaviour:
   option1: 0
   option2: 0
   start: 0
-  check1: 0
-  check2: 0
-  anim: {fileID: 0}
+  anim: {fileID: 1973007786}
   button1: {fileID: 560315920}
+  button2: {fileID: 1056466095}
 --- !u!95 &289082443
 Animator:
   serializedVersion: 3
@@ -896,7 +895,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 289082442}
-        m_MethodName: LookForWallet
+        m_MethodName: ButtonTwo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1180,7 +1179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1498983991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19b1276e2117cbd42a150759a3b0e8f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 050054b43b0bb084eaf3d75ed16d9eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2130854852}
@@ -1192,10 +1191,9 @@ MonoBehaviour:
   option1: 0
   option2: 0
   start: 0
-  check1: 0
-  check2: 0
-  anim: {fileID: 0}
-  button1: {fileID: 0}
+  anim: {fileID: 1973007786}
+  button1: {fileID: 560315920}
+  button2: {fileID: 1056466095}
 --- !u!114 &1498983993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,7 +1501,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973007783}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19b1276e2117cbd42a150759a3b0e8f7, type: 3}
   m_Name: 
@@ -1521,6 +1519,7 @@ MonoBehaviour:
   check2: 0
   anim: {fileID: 1973007786}
   button1: {fileID: 0}
+  button2: {fileID: 0}
 --- !u!95 &1973007786
 Animator:
   serializedVersion: 3

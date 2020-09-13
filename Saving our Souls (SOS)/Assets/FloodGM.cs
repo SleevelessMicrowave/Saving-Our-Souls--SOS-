@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class GM : MonoBehaviour
+public class FloodGM : MonoBehaviour
 {
     public TMP_Text text;
     public Button firstOp;
@@ -21,15 +21,15 @@ public class GM : MonoBehaviour
     private static bool done;
 
     public bool start;
-    public bool check1;
-    public bool check2;
+    //public bool check1;
+    //public bool check2;
 
     public Animator anim;
 
     public GameObject button1;
     public GameObject button2;
 
-    
+
 
     private static int animationCounter = 0;
     private static float pathCounter = 0;
@@ -39,10 +39,10 @@ public class GM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject.Find("FirstPersonPlayer").GetComponent<PlayerMovement>().enabled = false;
+        GameObject.Find("FirstPersonPlayer2").GetComponent<PlayerMovement>().enabled = false;
         GameObject.Find("Main Camera").GetComponent<MouseLook>().enabled = false;
         can.gameObject.SetActive(false);
-        check1 = false;
+        //check1 = false;
         start = true;
         anim = GetComponent<Animator>();
         done = false;
@@ -78,7 +78,7 @@ public class GM : MonoBehaviour
         {
             start = false;
             Debug.Log(start);
-            pathCounter += .25f;
+            pathCounter += .5f;
             StartCoroutine(S1());
             Debug.Log("Dont repeat");
         }
@@ -87,7 +87,7 @@ public class GM : MonoBehaviour
 
         if (pathCounter == 1)
         {
-            pathCounter+=.5f;
+            pathCounter += .5f;
             animationCounter++;
             Debug.Log("What");
             StartCoroutine(S2());
@@ -96,8 +96,8 @@ public class GM : MonoBehaviour
 
         if (pathCounter == 2)
         {
-            
-            pathCounter+=.5f;
+
+            pathCounter += .5f;
             animationCounter++;
             StartCoroutine(S3());
         }
@@ -174,17 +174,17 @@ public class GM : MonoBehaviour
     public IEnumerator S2()
     {
         yield return new WaitForSeconds(6f);
-        check1 = false;
+        //check1 = false;
         Debug.Log("do i make it here");
 
         can.gameObject.SetActive(true);
-        
+
 
         Debug.Log("whatbouthere");
 
         Question2();
 
-        
+
 
         if (option1 == true)
         {
@@ -230,7 +230,7 @@ public class GM : MonoBehaviour
         yield return new WaitForSeconds(5);
         Debug.Log("s6");
         can.gameObject.SetActive(true);
-        Question6();
+        //Question6();
     }
 
     public IEnumerator S7()
@@ -244,9 +244,9 @@ public class GM : MonoBehaviour
     {
         ChangeColor1();
         ChangeColor2();
-        text.text = "Look for wallet or Don’t look for wallet?";
-        text1.text = "Look for wallet";
-        text2.text = "Don't look for wallet";
+        text.text = "Turn on the headlights!";
+        text1.text = "urn on the headlight";
+        text2.text = "Turn on the headlight";
 
     }
 
@@ -254,46 +254,46 @@ public class GM : MonoBehaviour
     {
         ChangeColor1();
         ChangeColor2();
-        text.text = "Go to bedroom door or go to window?";
-        text1.text = "Go to bedroom door";
-        text2.text = "Jump out the window";
+        text.text = "Open the car door!";
+        text1.text = "Open the car door";
+        text2.text = "Open the car door";
     }
 
     void Question3()
     {
         ChangeColor1();
         ChangeColor2();
-        text.text = "Open the door or touch the door with back of hand?";
-        text1.text = "Open the door";
-        text2.text = "Touch the door with back of hand";
+        text.text = "Keep trying to open door or smash window";
+        text1.text = "keep trying";
+        text2.text = "Smash window";
     }
 
     void Question4()
     {
         ChangeColor1();
         ChangeColor2();
-        text.text = "You're on fire!";
-        text1.text = "Stop, drop, and roll!";
-        text2.text = "Keep going";
+        text.text = "Get out of the car";
+        text1.text = "Get out of the car";
+        text2.text = "Get out of the car";
     }
 
     void Question5()
     {
         ChangeColor1();
         ChangeColor2();
-        text.text = "Go out the closer front door that's on fire or the back door?";
-        text1.text = "Front door";
-        text2.text = "Back door";
+        text.text = "Get to high ground!";
+        text1.text = "Get to high ground";
+        text2.text = "Get to high ground";
     }
 
-    void Question6()
+    /*void Question6()
     {
         ChangeColor1();
         ChangeColor2();
         text.text = "You forgot your cat!";
         text1.text = "Get the cat!";
         text2.text = "Wait for the fire department.";
-    }
+    }*/
 
 
     void ChangeColor1()
@@ -311,45 +311,45 @@ public class GM : MonoBehaviour
 
 
 
-   /* void OnEnable()
-    {
-        firstOp.onClick.AddListener(delegate
-        {
-            option1 = true;
-        });
+    /* void OnEnable()
+     {
+         firstOp.onClick.AddListener(delegate
+         {
+             option1 = true;
+         });
 
-        secondOp.onClick.AddListener(delegate
-        {
-            option2 = true;
-        });
-    }*/
+         secondOp.onClick.AddListener(delegate
+         {
+             option2 = true;
+         });
+     }*/
 
     public void ButtonOne()
     {
         button1.SetActive(true);
-        Debug.Log("Animation counter: "  + animationCounter);
+        Debug.Log("Animation counter: " + animationCounter);
         done = true;
         pathCounter += .5f;
         if (animationCounter == 0)
         {
-            anim.SetBool("isLooking", true);
+            anim.SetBool("light", true);
 
         }
         else if (animationCounter == 1)
         {
-            anim.SetBool("leftButt", true);
+            anim.SetBool("openDoor", true);
         }
-        else if (animationCounter ==2)
+        else if (animationCounter == 2)
         {
-            anim.SetBool("slapDoor", true);
+            anim.SetBool("neckWater", true);
         }
         else if (animationCounter == 3)
         {
-            anim.SetBool("roll", true);
+            anim.SetBool("outtaCar", true);
         }
         else if (animationCounter == 4)
         {
-            anim.SetBool("frontDoor", true);
+            anim.SetBool("hiGround", true);
             //SceneManager.LoadScene("Congratulations");
         }
         else if (animationCounter == 5)
@@ -369,27 +369,31 @@ public class GM : MonoBehaviour
         pathCounter += .5f;
         if (animationCounter == 0)
         {
-            
 
-            can.gameObject.SetActive(true);
 
-            Question2();
+            anim.SetBool("light", true);
         }
         else if (animationCounter == 1)
         {
-            
-            anim.SetBool("rightButt", true);
+
+            anim.SetBool("openDoor", true);
         }
-        else if (animationCounter ==2)
+        else if (animationCounter == 2)
         {
-            
-            anim.SetBool("backHandDoor", true);
+            anim.SetBool("smash", true);
+
         }
         else if (animationCounter == 3)
         {
-            
-            anim.SetBool("backDoor", true);
+
+            anim.SetBool("outtaCar", true);
         }
+        else if (animationCounter == 4)
+        {
+            anim.SetBool("hiGround", true);
+
+        }
+        
         can.gameObject.SetActive(false);
     }
 
